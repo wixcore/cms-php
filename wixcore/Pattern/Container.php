@@ -1,7 +1,7 @@
 <?php
-
+# Створюємо простори імен.
 namespace WixCore\Pattern;
-
+# Створюємо клас оброблювача.
 class Container
 {
     # Контейнер
