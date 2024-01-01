@@ -1,0 +1,1 @@
+Header ||| <?= $this->data['example'] ?> <hr>
