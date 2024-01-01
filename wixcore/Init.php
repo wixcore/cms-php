@@ -3,20 +3,47 @@
 namespace WixCore;
 
 use WixCore\Helper\Common;
+use WixCore\Routing\DispatchedRoute;
 
-# Створюємо клас оброблювача.
 class Init
 {
-    # Приватне поле для зберігання контейнера залежностей.
     private $container;
-    # Конструктор, який приймає контейнер і присвоює його полю об'єкта.
+    private $router;
+
+    /**
+     * @param $container
+     */
+
     public function __construct($container)
     {
         $this->container = $container;
+        $this->router = $this->container->get('router');
     }
-    # Метод для запуску движка.
+
+    /**
+     * @return void
+     */
+
     public function run()
     {
-        print_r($this->container);
+        try {
+//            $this->router->add('home', '/', 'HomeController:index');
+//            $this->router->add('news', '/news', 'HomeController:news');
+//            $this->router->add('news_single', '/news/(id:int)', 'HomeController:news');
+
+            $routerDispatch = $this->router->dispatch(Common::getMethod(), Common::getPathUrl());
+            if ($routerDispatch == null)
+            {
+                $routerDispatch = new DispatchedRoute('ErrorController:page404');
+            }
+            list($class, $action) = explode(':', $routerDispatch->getController(), 2);
+            $controller = '\\Cms\\Controller\\' . $class;
+            $parameters = $routerDispatch->getParameters();
+            // Assuming $action is a method with named parameters
+            $controllerInstance = new $controller($this->container);
+            call_user_func_array([$controllerInstance,  $action], $parameters);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
     }
 }

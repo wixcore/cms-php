@@ -10,8 +10,8 @@
     "autoload": {
         "psr-4": {
             "WixCore\\": "wixcore",
-            "WixCore\\Pattern\\": "wixcore/Pattern",
-            "Plugin\\": "content/plugins"
+            "Cms\\": "cms",
+            "WixCore\\Pattern\\": "wixcore/Pattern"
         },
         "files": []
     }
