@@ -11,7 +11,7 @@ class Provider extends AbstractProvider
     /**
      * @return void
      */
-    
+
     public function init()
     {
         $router = new Router('http://cms-php/');
