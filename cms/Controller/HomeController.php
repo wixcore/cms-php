@@ -10,16 +10,7 @@ class HomeController extends CmsController
 
     public function index()
     {
-        echo 'Index Page';
-    }
-
-    /**
-     * @param $id
-     * @return void
-     */
-
-    public function news($id)
-    {
-        echo $id;
+        $data = ['example' => 'Example'];
+        $this->view->render('main', $data);
     }
 }
