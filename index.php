@@ -12,6 +12,14 @@ define('ROOT_DIR', __DIR__);
 try {
     # Створення екземпляра контейнера залежностей
     $container = new Container();
+    # Підключаємо конфігурацію допоміжних файлів.
+    $serviced = require_once __DIR__ . '/wixcore/Config/Service.php';
+    # Створюємо кожного класу екземпляр.
+    foreach ($serviced as $service) 
+    {
+        $provider = new $service($container);
+        $provider->init();
+    }
     # Створення екземпляра ініціалізації з передачею контейнера
     $init = new Init($container);
     # Виклик методу "run" для ініціалізації

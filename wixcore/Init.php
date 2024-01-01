@@ -2,9 +2,6 @@
 # Створюємо простори імен.
 namespace WixCore;
 
-# Використовуємо простори імен
-// use WixCore\Database\Connection;
-
 # Створюємо клас оброблювача.
 class Init
 {
@@ -18,9 +15,6 @@ class Init
     # Метод для запуску движка.
     public function run()
     {
-        // $db = new Connection();
-        // $db->execute("INSERT INTO `user` SET `username` = 'username', `password`='123456789', `date`=" . time());
-        // print_r($db->query("SELECT * FROM `user`"));
-        die('Сайт успішно ініціалізовано.');
+        print_r($this->container);
     }
 }
