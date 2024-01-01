@@ -2,6 +2,8 @@
 # Створюємо простори імен.
 namespace WixCore;
 
+use WixCore\Helper\Common;
+
 # Створюємо клас оброблювача.
 class Init
 {
