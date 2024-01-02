@@ -27,14 +27,14 @@ class Init
     public function run()
     {
         try {
-            require_once __DIR__ . '/../cms/Route.php';
+            require_once __DIR__ . '/../' . mb_strtolower(ENV) . '/Route.php';
             $routerDispatch = $this->router->dispatch(Common::getMethod(), Common::getPathUrl());
             if ($routerDispatch == null)
             {
                 $routerDispatch = new DispatchedRoute('ErrorController:page404');
             }
             list($class, $action) = explode(':', $routerDispatch->getController(), 2);
-            $controller = '\\Cms\\Controller\\' . $class;
+            $controller = '\\' . ENV . '\\Controller\\' . $class;
             $parameters = $routerDispatch->getParameters();
             // Assuming $action is a method with named parameters
             $controllerInstance = new $controller($this->container);

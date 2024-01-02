@@ -7,6 +7,7 @@ class Theme
     const RULES_NAME_FILE = [
         'header' => 'header-%s',
         'footer' => 'footer-%s',
+        'sidebar' => 'sidebar-%s'
     ];
 
     public $url = '';
@@ -46,6 +47,40 @@ class Theme
         }
 
         $this->loadTemplateFile($file);
+    }
+
+    /**
+     * @param $name
+     * @return void
+     * @throws \Exception
+     */
+    public function sidebar($name = '')
+    {
+        $name = (string) $name;
+        $file = 'sidebar';
+
+        if ($name !== '')
+        {
+            $file = sprintf(self::RULES_NAME_FILE['sidebar'], $name);
+        }
+
+        $this->loadTemplateFile($file);
+    }
+
+    /**
+     * @param $name
+     * @param $data
+     * @return void
+     * @throws \Exception
+     */
+    public function block($name = '', $data = [])
+    {
+        $name = (string) $name;
+
+        if ($name !== '')
+        {
+            $this->loadTemplateFile($name, $data);
+        }
     }
 
     /**
