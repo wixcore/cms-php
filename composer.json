@@ -11,6 +11,7 @@
         "psr-4": {
             "WixCore\\": "wixcore",
             "Cms\\": "cms",
+            "Admin\\": "admin",
             "WixCore\\Pattern\\": "wixcore/Pattern"
         },
         "files": []
