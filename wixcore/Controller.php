@@ -8,6 +8,7 @@ abstract class Controller
 {
     protected $container;
     protected $view;
+    protected $config;
 
     /**
      * @param Container $container
@@ -17,5 +18,6 @@ abstract class Controller
     {
         $this->container = $container;
         $this->view = $this->container->get('view');
+        $this->config = $this->container->get('config');
     }
 }
