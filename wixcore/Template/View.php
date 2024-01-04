@@ -58,7 +58,7 @@ class View
      */
     private function getTemplatePath($template, $env = null)
     {
-        if ($env == 'CMS')
+        if ($env == 'Cms')
         {
             return ROOT_DIR . '/content/themes/default/' . $template . '.php';
         }
