@@ -5,6 +5,7 @@ namespace WixCore\Database;
 # Використовуємо простори імен
 use PDO;
 use PDOException;
+use WixCore\Config\Config;
 
 # Створюємо клас оброблювача.
 class Connection
@@ -22,14 +23,13 @@ class Connection
     private function connect()
     {
         # Додано слеш перед "config.php"
-        $config = require_once ROOT_DIR . '/config.php';
-
+        $config = Config::file('database');
         # Складання DSN (Data Source Name) для підключення до бази даних
-        $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['db_name'] . ';charset=' . $config['db']['charset'];
+        $dsn = 'mysql:host=' . $config['host'] . ';dbname=' . $config['db_name'] . ';charset=' . $config['charset'];
 
         try {
             # Створення об'єкта PDO для підключення до бази даних
-            $this->link = new PDO($dsn, $config['db']['username'], $config['db']['password']);
+            $this->link = new PDO($dsn, $config['username'], $config['password']);
             # Налаштування, щоб PDO повертало помилки при виникненні
             $this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
